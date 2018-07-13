@@ -24,6 +24,7 @@
   CGSize _previousContentSize;
 
   NSTextStorage *_textStorage;
+  NSString *_text;
   NSTextContainer *_textContainer;
   NSLayoutManager *_layoutManager;
 }
@@ -99,6 +100,18 @@
     },
     @"target": self.reactTag,
   });
+}
+
+// fix iOS TextInput can not input Chinese
+- (NSString *)text
+{
+  return _text;
+}
+
+- (void)setText:(NSString *)text
+{
+  _text = text;
+  _previousAttributedText = _localAttributedText;
 }
 
 #pragma mark - RCTUIManagerObserver
